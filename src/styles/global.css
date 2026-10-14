@@ -1,0 +1,223 @@
+/* Local Bebas Neue font face for instant, zero-latency rendering */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/bebas-neue.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/anton.woff2') format('woff2');
+}
+
+:root {
+  /* Color Palette */
+  --color-red: #F10A12;
+  --color-red-hover: #d0080f;
+  --color-red-dim: rgba(241, 10, 18, 0.12);
+  --color-red-glow: rgba(241, 10, 18, 0.25);
+  
+  --color-bg: #080808;
+  --color-surface: #0f0f11;
+  --color-surface-light: #161619;
+  --color-surface-hover: #1b1b20;
+  
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9B9BA0;
+  --color-text-muted: #5C5C60;
+  
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-hover: rgba(255, 255, 255, 0.22);
+  --color-border-red: rgba(241, 10, 18, 0.4);
+
+  /* Typography */
+  --font-display: 'Bebas Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Layout & Spacing */
+  --container-max-width: 1320px;
+  --container-padding: clamp(1.25rem, 5vw, 3.5rem);
+  --section-spacing-y: clamp(5rem, 10vw, 9rem);
+
+  /* Transitions */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-editorial);
+  --transition-base: 0.35s var(--ease-editorial);
+  --transition-slow: 0.6s var(--ease-editorial);
+}
+
+/* CSS Reset & Defaults */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #222226;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-red);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-red);
+  color: #FFFFFF;
+}
+
+/* Base Links & Typography */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Container Utility */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Section Header Typography Standard */
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--color-red);
+  opacity: 0.6;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: 2.5rem;
+}
+
+/* Interactive elements */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: var(--color-red);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.25rem;
+  border-radius: 2px;
+  border: 1px solid var(--color-red);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-red-glow);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.35rem;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+/* Focus Accessible Outline */
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 4px;
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

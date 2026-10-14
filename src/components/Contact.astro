@@ -1,0 +1,220 @@
+---
+// Contact.astro
+---
+
+<section id="contact" class="contact-section" aria-label="Contact Mahesh Gadakh">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="section-eyebrow">05 / CONTACT</div>
+      
+      <h2 class="contact-headline">
+        Have a project in mind?
+      </h2>
+
+      <p class="contact-subtext">
+        Let's talk about CDP, marketing technology or data engineering.
+      </p>
+
+      <div class="contact-actions">
+        <a 
+          href="mailto:gadakhm122@gmail.com" 
+          class="btn-primary" 
+          id="cta-get-in-touch"
+          aria-label="Send email to Mahesh Gadakh"
+        >
+          <span>GET IN TOUCH</span>
+          <span class="cta-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a 
+          href="https://www.linkedin.com/in/mahesh-gadakh-13366219b/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="linkedin-btn"
+          aria-label="View Mahesh Gadakh LinkedIn Profile"
+        >
+          <svg class="linkedin-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          <span>Connect on LinkedIn</span>
+          <span class="cta-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <!-- Quick Contact Info Grid -->
+      <div class="contact-details-grid">
+        <div class="contact-card">
+          <span class="card-eyebrow">DIRECT EMAIL</span>
+          <a href="mailto:gadakhm122@gmail.com" class="card-value">
+            gadakhm122@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <span class="card-eyebrow">LINKEDIN PROFILE</span>
+          <a href="https://www.linkedin.com/in/mahesh-gadakh-13366219b/" target="_blank" rel="noopener noreferrer" class="card-value">
+            linkedin.com/in/mahesh-gadakh
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <span class="card-eyebrow">AVAILABILITY</span>
+          <span class="card-value status-online">
+            <span class="status-dot"></span>
+            Available for Consulting & Enterprise Solutions
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    position: relative;
+    background-color: var(--color-bg);
+    padding: var(--section-spacing-y) 0;
+    border-top: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  /* Subtle Red Radial Accent Background */
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(241, 10, 18, 0.08) 0%, rgba(8, 8, 8, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .contact-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .contact-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-subtext {
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 3.5rem;
+    max-width: 650px;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .cta-arrow {
+    display: inline-block;
+    transition: transform var(--transition-fast);
+  }
+
+  .btn-primary:hover .cta-arrow,
+  .linkedin-btn:hover .cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1.1rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .linkedin-btn:hover {
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    transform: translateY(-2px);
+  }
+
+  .linkedin-icon {
+    color: var(--color-red);
+  }
+
+  /* Details Grid */
+  .contact-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 768px) {
+    .contact-details-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--color-red);
+    text-transform: uppercase;
+  }
+
+  .card-value {
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    word-break: break-all;
+    transition: color var(--transition-fast);
+  }
+
+  a.card-value:hover {
+    color: var(--color-red);
+  }
+
+  .status-online {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    word-break: normal;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10B981;
+    flex-shrink: 0;
+  }
+</style>

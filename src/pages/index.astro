@@ -1,0 +1,94 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Expertise from '../components/Expertise.astro';
+import Projects from '../components/Projects.astro';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout 
+  title="Mahesh Gadakh — Customer Data Platform Specialist & Data Engineer"
+  description="Personal portfolio of Mahesh Gadakh. Customer Data Platform (CDP) Specialist, Marketing Technology Consultant, and Data Engineer with 4.6+ years experience in Treasure Data, Customer 360, and ETL pipelines."
+>
+  <Header />
+  
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Expertise />
+    <Projects />
+    <Experience />
+    <Contact />
+  </main>
+
+  <Footer />
+
+  <script>
+    import { initHeroParallax } from '../scripts/hero-parallax';
+
+    // Initialize parallax animations
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initHeroParallax();
+      });
+    } else {
+      initHeroParallax();
+    }
+
+    // Scroll reveal observer for section elements
+    function initScrollReveals() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      const revealElements = document.querySelectorAll('.section-heading, .about-headline, .about-body, .expertise-row, .project-card, .timeline-item');
+      revealElements.forEach((el) => {
+        el.classList.add('reveal-item');
+        observer.observe(el);
+      });
+    }
+
+    // Run reveals
+    initScrollReveals();
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Scroll reveal animation styles */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

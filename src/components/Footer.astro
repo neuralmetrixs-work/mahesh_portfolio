@@ -1,0 +1,192 @@
+---
+// Footer.astro
+const currentYear = 2026;
+---
+
+<footer class="site-footer" aria-label="Site Footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <a href="#hero" class="footer-logo">
+          <span>MAHESH GADAKH</span><span class="logo-dot">.</span>
+        </a>
+        <p class="footer-descriptor">
+          CDP Engineering · Marketing Technology · Data Engineering
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <div class="footer-group">
+          <span class="footer-group-title">NAVIGATION</span>
+          <ul class="footer-link-list">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#expertise" class="footer-link">Expertise</a></li>
+            <li><a href="#work" class="footer-link">Work</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-group">
+          <span class="footer-group-title">CONNECT</span>
+          <ul class="footer-link-list">
+            <li>
+              <a 
+                href="https://www.linkedin.com/in/mahesh-gadakh-13366219b/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="footer-link"
+              >
+                LinkedIn ↗
+              </a>
+            </li>
+            <li>
+              <a href="mailto:gadakhm122@gmail.com" class="footer-link">
+                Email ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {currentYear} Mahesh Gadakh. All rights reserved.
+      </p>
+      <div class="footer-signature">
+        <span class="sig-line" aria-hidden="true"></span>
+        <span class="sig-text">Designed & Built for High Performance</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    padding: 5rem 0 3rem 0;
+    position: relative;
+  }
+
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  @media (min-width: 860px) {
+    .footer-top {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  .footer-brand-col {
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .logo-dot {
+    color: var(--color-red);
+  }
+
+  .footer-descriptor {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  .footer-links-col {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .footer-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    color: var(--color-red);
+    text-transform: uppercase;
+  }
+
+  .footer-link-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-link {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-block;
+  }
+
+  .footer-link:hover {
+    color: #FFFFFF;
+    transform: translateX(3px);
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .footer-signature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sig-line {
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background-color: var(--color-red);
+  }
+
+  .sig-text {
+    color: var(--color-text-secondary);
+  }
+</style>

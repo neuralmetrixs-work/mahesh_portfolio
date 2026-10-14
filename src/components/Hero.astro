@@ -1,0 +1,396 @@
+---
+// Hero.astro
+---
+
+<section id="hero" class="hero-section" aria-label="Introduction">
+  <!-- Dynamic Red Canvas -->
+  <div class="hero-bg-canvas" aria-hidden="true"></div>
+
+  <!-- Giant Poster Typography — same container as navbar for edge alignment -->
+  <div class="hero-type-container" aria-hidden="true">
+    <!-- .container mirrors the navbar container: max-width 1320px + same padding -->
+    <div class="container hero-name-wrapper">
+      <h1 class="visually-hidden">Mahesh Gadakh — Customer Data Platform Specialist & Data Engineer</h1>
+      <span class="hero-title-first" id="hero-title-first">MAHESH</span>
+      <span class="hero-title-last" id="hero-title-last">GADAKH</span>
+    </div>
+  </div>
+
+  <!-- Central Monochrome Portrait (z-index: 3, Red-Rimmed Monochrome Portrait) -->
+  <img
+    src="/images/Red-Rimmed%20Monochrome%20Portrait.png"
+    alt="Mahesh Gadakh - Customer Data Platform Specialist and Data Engineer"
+    class="hero-portrait-img"
+    fetchpriority="high"
+    loading="eager"
+    decoding="sync"
+  />
+
+  <!-- Understated Minimal Scroll Indicator (z-index: 5) -->
+  <a href="#about" class="hero-scroll-indicator" aria-label="Scroll to About section">
+    <span class="scroll-track">
+      <span class="scroll-pulse"></span>
+    </span>
+    <svg class="scroll-chevron" width="12" height="7" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 560px;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-red);
+    color: #FFFFFF;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .hero-bg-canvas {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-red);
+    z-index: 1;
+  }
+
+  /* Typography Layer: z-index 2
+     Stretches full viewport width so the inner .container can centre-align
+     to the same grid as the navbar. */
+  .hero-type-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  /* .hero-name-wrapper extends .container (max-width 1320px, same padding as nav). */
+  .hero-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* left-align to container left edge (= logo edge) */
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    /* Anton typography scaled to navbar width */
+    --hero-fs: clamp(4rem, calc(90vw * 0.3145), 380px);
+    --ls-first: calc(var(--hero-fs) * 0.0127);
+    --ls-last: calc(var(--hero-fs) * 0.0432);
+    line-height: 0.84;
+  }
+
+  @media (min-width: 1320px) {
+    .hero-name-wrapper {
+      /* Fixed container inner width: 1320px - 112px padding = 1208px. */
+      --hero-fs: 380px;
+      --ls-first: 4.83px;
+      --ls-last: 16.4px;
+    }
+  }
+
+  .hero-title-first,
+  .hero-title-last {
+    font-family: 'Anton', var(--font-display);
+    font-size: var(--hero-fs);
+    text-transform: uppercase;
+    display: block;
+    line-height: 0.84;
+    will-change: transform;
+    white-space: nowrap;
+    color: #F8F9FA;
+    /* 3D text effect: white/light-gray face, thick black & dark-red extrusion extending down-right, red edge highlights, deep shadows */
+    text-shadow:
+      -1px -1px 0 rgba(241, 10, 18, 0.45),
+      0px -1px 0 rgba(255, 90, 90, 0.35),
+      -1px 0px 0 rgba(255, 90, 90, 0.35),
+      1px 1px 0 #111111,
+      2px 2px 0 #111111,
+      3px 3px 0 #6e0508,
+      4px 4px 0 #6e0508,
+      5px 5px 0 #520306,
+      6px 6px 0 #520306,
+      7px 7px 0 #3b0204,
+      8px 8px 0 #3b0204,
+      9px 9px 0 #160102,
+      10px 10px 0 #160102,
+      11px 11px 0 #0d0001,
+      12px 12px 0 #0d0001,
+      13px 13px 0 #080808,
+      14px 14px 0 #080808,
+      15px 15px 0 #050505,
+      16px 16px 0 #050505,
+      17px 17px 0 #020202,
+      18px 18px 0 #000000,
+      19px 19px 0 #000000,
+      20px 20px 0 #000000,
+      22px 22px 15px rgba(0, 0, 0, 0.75),
+      26px 26px 28px rgba(0, 0, 0, 0.85),
+      32px 32px 45px rgba(180, 0, 0, 0.35);
+  }
+
+  .hero-title-first {
+    letter-spacing: var(--ls-first);
+  }
+
+  .hero-title-last {
+    margin-top: -0.06em;
+    letter-spacing: var(--ls-last);
+  }
+
+  /* Portrait: z-index 3 (centered foreground in front of typography) */
+  .hero-portrait-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    z-index: 3;
+    pointer-events: none;
+    display: block;
+    width: auto;
+    height: 78svh;
+    max-height: calc(100svh - 75px);
+    max-width: min(760px, 64vw);
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
+    will-change: transform;
+    transform-origin: bottom center;
+  }
+
+  /* Scroll Indicator: z-index 5 */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.45rem 0.65rem;
+    background: rgba(8, 8, 8, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: color var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .hero-scroll-indicator:hover {
+    color: #FFFFFF;
+    background: rgba(8, 8, 8, 0.6);
+    transform: translateX(-50%) translateY(2px);
+  }
+
+  .scroll-track {
+    width: 2px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    animation: scrollPulseAnim 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .scroll-chevron {
+    opacity: 0.85;
+  }
+
+  @keyframes scrollPulseAnim {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+  }
+
+  /* Mobile: Cinematic poster composition where oversized text layers directly behind portrait */
+  @media (max-width: 767px) {
+    .hero-type-container {
+      top: 38%;
+      transform: translateY(-50%);
+    }
+
+    .hero-name-wrapper {
+      align-items: center;
+      text-align: center;
+      --hero-fs: clamp(5.2rem, 25vw, 6.8rem);
+      padding-inline: 0.75rem;
+    }
+
+    .hero-title-first,
+    .hero-title-last {
+      line-height: 0.86;
+      /* Scaled down 3D extrusion tailored for mobile font sizes */
+      text-shadow:
+        -1px -1px 0 rgba(241, 10, 18, 0.4),
+        1px 1px 0 #111111,
+        2px 2px 0 #520306,
+        3px 3px 0 #3b0204,
+        4px 4px 0 #160102,
+        5px 5px 0 #0d0001,
+        6px 6px 0 #080808,
+        7px 7px 0 #000000,
+        8px 8px 0 #000000,
+        9px 9px 8px rgba(0, 0, 0, 0.75),
+        12px 12px 18px rgba(0, 0, 0, 0.85),
+        16px 16px 25px rgba(180, 0, 0, 0.35);
+    }
+
+    .hero-title-first {
+      letter-spacing: 0.03em;
+    }
+
+    .hero-title-last {
+      margin-top: -0.05em;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-portrait-img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: min(660px, 150vw);
+      max-width: none;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      object-position: bottom center;
+    }
+
+    .hero-scroll-indicator {
+      bottom: max(0.85rem, calc(env(safe-area-inset-bottom) + 0.5rem));
+      transform: translateX(-50%) scale(0.9);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero-type-container {
+      top: 37%;
+    }
+
+    .hero-name-wrapper {
+      --hero-fs: clamp(4.6rem, 24vw, 5.8rem);
+    }
+
+    .hero-portrait-img {
+      width: min(580px, 145vw);
+    }
+  }
+</style>
+
+<script>
+  /**
+   * High-precision dynamic alignment:
+   * Keeps MAHESH and GADAKH perfectly spanning from the left edge of the
+   * navbar logo to the right edge of the Contact link across all resolutions.
+   *
+   * Root cause resolved:
+   * 1. Bebas Neue is now preloaded locally via WOFF2, preventing any fallback font flash.
+   * 2. CSS sets the exact baseline --hero-fs immediately on frame 1 without delay.
+   * 3. This script performs non-destructive fine-tuning without resetting/probing font size
+   *    and without any artificial max clamp.
+   */
+  function adjustHeroTypography() {
+    if (window.innerWidth < 768) {
+      const wrapper = document.querySelector('.hero-name-wrapper') as HTMLElement | null;
+      const first = document.getElementById('hero-title-first') as HTMLElement | null;
+      const last = document.getElementById('hero-title-last') as HTMLElement | null;
+      if (wrapper) wrapper.style.removeProperty('--hero-fs');
+      if (first) first.style.removeProperty('letter-spacing');
+      if (last) last.style.removeProperty('letter-spacing');
+      return;
+    }
+
+    const wrapper = document.querySelector('.hero-name-wrapper') as HTMLElement | null;
+    const first = document.getElementById('hero-title-first') as HTMLElement | null;
+    const last = document.getElementById('hero-title-last') as HTMLElement | null;
+    const logo = document.querySelector('.brand-logo') as HTMLElement | null;
+    const contact = document.querySelector('.nav-list .nav-item:last-child a') as HTMLElement | null;
+
+    if (!wrapper || !first || !last) return;
+
+    let targetWidth: number;
+    if (logo && contact) {
+      const logoRect = logo.getBoundingClientRect();
+      const contactRect = contact.getBoundingClientRect();
+      targetWidth = contactRect.right - logoRect.left;
+    } else {
+      const cs = window.getComputedStyle(wrapper);
+      const padLeft = parseFloat(cs.paddingLeft) || 0;
+      const padRight = parseFloat(cs.paddingRight) || 0;
+      targetWidth = wrapper.clientWidth - padLeft - padRight;
+    }
+
+    if (targetWidth <= 0) return;
+
+    // Anton font metrics: MAHESH ratio 3.102656, GADAKH ratio 2.92
+    const fs = Math.min(targetWidth / 3.102656, 380);
+    const lsFirst = Math.max(0, (targetWidth - fs * 3.102656) / 6);
+    const lsLast = Math.max(0, (targetWidth - fs * 2.92) / 6);
+
+    wrapper.style.setProperty('--hero-fs', `${fs}px`);
+    first.style.setProperty('letter-spacing', `${lsFirst}px`);
+    last.style.setProperty('letter-spacing', `${lsLast}px`);
+  }
+
+  // Double rAF ensures DOM and font layout are committed before fine-tuning
+  requestAnimationFrame(() => requestAnimationFrame(adjustHeroTypography));
+
+  // Safety net on window load
+  window.addEventListener('load', adjustHeroTypography, { once: true, passive: true });
+
+  // Responsive resize
+  let resizeTimer: number;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeTimer);
+    resizeTimer = requestAnimationFrame(adjustHeroTypography);
+  }, { passive: true });
+</script>
